@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "gen/go/api";
+
+import "google/api/annotations.proto";
+
+
+service TaskManager {
+    rpc GetTask(GetTaskRequest) returns (GetTaskResponse) {
+        option (google.api.http) = {
+            get: "/tasks"
+        };
+    }
+    rpc GetTaskId(GetTaskIdRequest) returns (GetTaskIdResponse) {
+        option (google.api.http) = {
+            get: "/tasks/{task_id}"
+        };
+    }
+    rpc CreateNewTask(CreateNewTaskRequest) returns (CreateNewTaskResponse) {
+        option (google.api.http) = {
+            post: "/tasks"
+            body: "*"
+        };
+    }
+    rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {
+        option (google.api.http) = {
+            patch: "/tasks/{task_id}"
+            body: "*"
+        };
+    }
+    rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {
+        option (google.api.http) = {
+            delete: "/tasks/{task_id}"
+        };
+    }
+}
+
+message GetTaskRequest {
+
+}
+
+message GetTaskResponse {
+    repeated int64 task_id = 1;
+    repeated string task_list = 2;
+}
+
+message GetTaskIdRequest {
+    int64 task_id = 1;
+}
+
+
+message GetTaskIdResponse {
+    int64 task_id = 1;
+    string name = 2;
+    string description = 3;
+    string status_task = 4;
+    string created_time = 5;
+}
+
+
+message CreateNewTaskRequest {
+    string name_task = 1;
+    string description = 2;
+    string status_task = 3;
+}
+
+message CreateNewTaskResponse {
+    int64 task_id = 1;
+}
+
+
+message UpdateTaskRequest {
+    int64 task_id = 1;
+    string status_task = 2;
+}
+
+message UpdateTaskResponse {
+    int64 task_id = 1;
+    string status = 2;
+}
+
+
+message DeleteTaskRequest {
+    int64 task_id = 1;
+}
+
+message DeleteTaskResponse {
+    string status = 1;
+}
