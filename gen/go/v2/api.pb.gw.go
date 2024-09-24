@@ -2,11 +2,11 @@
 // source: api.proto
 
 /*
-Package v1 is a reverse proxy.
+Package v2 is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package v1
+package v2
 
 import (
 	"context"
@@ -255,7 +255,7 @@ func RegisterTaskManagerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/GetTask", runtime.WithHTTPPathPattern("/v1/tasks"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/GetTask", runtime.WithHTTPPathPattern("/v2/tasks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -280,7 +280,7 @@ func RegisterTaskManagerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/GetTaskId", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/GetTaskId", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -305,7 +305,7 @@ func RegisterTaskManagerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/CreateNewTask", runtime.WithHTTPPathPattern("/v1/tasks"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/CreateNewTask", runtime.WithHTTPPathPattern("/v2/tasks/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -330,7 +330,7 @@ func RegisterTaskManagerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/UpdateTask", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/UpdateTask", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -355,7 +355,7 @@ func RegisterTaskManagerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/DeleteTask", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.TaskManager/DeleteTask", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -419,7 +419,7 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/GetTask", runtime.WithHTTPPathPattern("/v1/tasks"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/GetTask", runtime.WithHTTPPathPattern("/v2/tasks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -441,7 +441,7 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/GetTaskId", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/GetTaskId", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -463,7 +463,7 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/CreateNewTask", runtime.WithHTTPPathPattern("/v1/tasks"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/CreateNewTask", runtime.WithHTTPPathPattern("/v2/tasks/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -485,7 +485,7 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/UpdateTask", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/UpdateTask", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -507,7 +507,7 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/DeleteTask", runtime.WithHTTPPathPattern("/v1/tasks/{task_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.TaskManager/DeleteTask", runtime.WithHTTPPathPattern("/v2/tasks/{task_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -527,15 +527,15 @@ func RegisterTaskManagerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_TaskManager_GetTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "tasks"}, ""))
+	pattern_TaskManager_GetTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "tasks"}, ""))
 
-	pattern_TaskManager_GetTaskId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "tasks", "task_id"}, ""))
+	pattern_TaskManager_GetTaskId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v2", "tasks", "task_id"}, ""))
 
-	pattern_TaskManager_CreateNewTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "tasks"}, ""))
+	pattern_TaskManager_CreateNewTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v2", "tasks", "create"}, ""))
 
-	pattern_TaskManager_UpdateTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "tasks", "task_id"}, ""))
+	pattern_TaskManager_UpdateTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v2", "tasks", "task_id"}, ""))
 
-	pattern_TaskManager_DeleteTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "tasks", "task_id"}, ""))
+	pattern_TaskManager_DeleteTask_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v2", "tasks", "task_id"}, ""))
 )
 
 var (
