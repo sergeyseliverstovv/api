@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TaskManagerClient interface {
-	GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error)
+	GetTask(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTaskResponse, error)
 	GetTaskId(ctx context.Context, in *GetTaskIdRequest, opts ...grpc.CallOption) (*GetTaskIdResponse, error)
 	CreateNewTask(ctx context.Context, in *CreateNewTaskRequest, opts ...grpc.CallOption) (*CreateNewTaskResponse, error)
 	UpdateTask(ctx context.Context, in *UpdateTaskRequest, opts ...grpc.CallOption) (*UpdateTaskResponse, error)
@@ -45,7 +46,7 @@ func NewTaskManagerClient(cc grpc.ClientConnInterface) TaskManagerClient {
 	return &taskManagerClient{cc}
 }
 
-func (c *taskManagerClient) GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error) {
+func (c *taskManagerClient) GetTask(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetTaskResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTaskResponse)
 	err := c.cc.Invoke(ctx, TaskManager_GetTask_FullMethodName, in, out, cOpts...)
@@ -99,7 +100,7 @@ func (c *taskManagerClient) DeleteTask(ctx context.Context, in *DeleteTaskReques
 // All implementations must embed UnimplementedTaskManagerServer
 // for forward compatibility.
 type TaskManagerServer interface {
-	GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error)
+	GetTask(context.Context, *emptypb.Empty) (*GetTaskResponse, error)
 	GetTaskId(context.Context, *GetTaskIdRequest) (*GetTaskIdResponse, error)
 	CreateNewTask(context.Context, *CreateNewTaskRequest) (*CreateNewTaskResponse, error)
 	UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskResponse, error)
@@ -114,7 +115,7 @@ type TaskManagerServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTaskManagerServer struct{}
 
-func (UnimplementedTaskManagerServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
+func (UnimplementedTaskManagerServer) GetTask(context.Context, *emptypb.Empty) (*GetTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTask not implemented")
 }
 func (UnimplementedTaskManagerServer) GetTaskId(context.Context, *GetTaskIdRequest) (*GetTaskIdResponse, error) {
@@ -151,7 +152,7 @@ func RegisterTaskManagerServer(s grpc.ServiceRegistrar, srv TaskManagerServer) {
 }
 
 func _TaskManager_GetTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTaskRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -163,7 +164,7 @@ func _TaskManager_GetTask_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: TaskManager_GetTask_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TaskManagerServer).GetTask(ctx, req.(*GetTaskRequest))
+		return srv.(TaskManagerServer).GetTask(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
