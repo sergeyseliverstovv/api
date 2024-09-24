@@ -4,7 +4,7 @@
 // - protoc             v4.25.2
 // source: api.proto
 
-package api
+package v1
 
 import (
 	context "context"
